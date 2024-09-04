@@ -1,0 +1,4 @@
+export enum UserType {
+    UNDEFINED = 'UNDEFINED',
+    ADMINISTRATOR = 'ADMINISTRATOR'
+}

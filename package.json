@@ -1,0 +1,13 @@
+{
+    "name": "@tns/common",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "author": "Renat Gubaev",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-core/common": "~3.0.53",
+        "@hlf-core/common": "~3.0.13"
+    },
+    "devDependencies": {}
+}
