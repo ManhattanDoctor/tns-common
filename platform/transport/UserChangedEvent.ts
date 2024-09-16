@@ -1,5 +1,5 @@
 import { TransportEvent } from "@ts-core/common";
-import { User } from "../User1";
+import { User } from "../User";
 
 export class UserChangedEvent extends TransportEvent<User>{
     // --------------------------------------------------------------------------

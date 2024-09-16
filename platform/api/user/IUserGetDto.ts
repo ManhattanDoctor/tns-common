@@ -1,3 +1,3 @@
-import { User } from "../../User1";
+import { User } from "../../User";
 
 export declare type IUserGetDtoResponse = User;
