@@ -1,6 +1,8 @@
 export interface IInitDtoResponse {
-    hlf: {
-        name: string;
-        endpoint: string;
-    }
+    hlf: IHlfDetails;
+}
+
+export interface IHlfDetails {
+    name: string;
+    endpoint: string;
 }
