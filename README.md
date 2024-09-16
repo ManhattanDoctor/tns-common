@@ -1,1 +1,1 @@
-# tns-common
+# common

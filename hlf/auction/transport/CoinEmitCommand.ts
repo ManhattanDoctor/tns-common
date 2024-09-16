@@ -1,7 +1,8 @@
 import { TransformUtil } from '@ts-core/common';
 import { Matches, IsString, IsNumberString, IsOptional } from 'class-validator';
-import { CoinUtil, HlfTransportCommandAsync } from '@hlf-core/common';
+import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { CommandName } from './Command';
+import { RegExpUtil } from '../../../util';
 
 export class CoinEmitCommand extends HlfTransportCommandAsync<ICoinEmitDto, void> {
     // --------------------------------------------------------------------------
@@ -34,10 +35,10 @@ export class CoinEmitDto {
     @IsNumberString()
     amount: string;
 
-    @Matches(CoinUtil.UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_UID_REG_EXP)
     coinUid: string;
 
-    @Matches(CoinUtil.OBJECT_UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_OBJECT_UID_REG_EXP)
     objectUid: string;
 
     @IsString()

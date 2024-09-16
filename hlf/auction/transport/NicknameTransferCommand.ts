@@ -1,6 +1,6 @@
 import { TransformUtil } from '@ts-core/common';
 import { HlfTransportCommandAsync } from '@hlf-core/common';
-import { Matches } from 'class-validator';
+import { IsOptional, Matches } from 'class-validator';
 import { CommandName } from './Command';
 import { RegExpUtil } from '../../../util';
 import { Nickname } from '../Nickname';
@@ -28,12 +28,14 @@ export class NicknameTransferCommand extends HlfTransportCommandAsync<INicknameT
 
 export interface INicknameTransferDto {
     to: string;
-    from: string;
+    from?: string;
 }
 
 class NicknameTransferDto implements INicknameTransferDto {
     @Matches(RegExpUtil.USER_UID_REG_EXP)
     to: string;
+
+    @IsOptional()
     @Matches(RegExpUtil.USER_UID_REG_EXP)
-    from: string;
+    from?: string;
 }

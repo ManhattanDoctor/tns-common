@@ -1,7 +1,8 @@
+import { TransformUtil, TransportEvent } from '@ts-core/common';
 import { Event } from './Event';
-import { NicknameEvent, INicknameEventDto } from './NicknameEvent';
+import { Nickname } from '../Nickname';
 
-export class NicknameAddedEvent extends NicknameEvent {
+export class NicknameAddedEvent extends TransportEvent<Nickname> {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +17,7 @@ export class NicknameAddedEvent extends NicknameEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: INicknameEventDto) {
-        super(NicknameAddedEvent.NAME, data);
+    constructor(data: Nickname) {
+        super(NicknameAddedEvent.NAME, TransformUtil.toClass(Nickname, data));
     }
 }

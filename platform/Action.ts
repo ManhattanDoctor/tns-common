@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import { Type } from 'class-transformer';
+import * as _ from 'lodash';
 
 export class Action {
     id: number;
@@ -7,31 +7,28 @@ export class Action {
 
     @Type(() => Date)
     date: Date;
+    isExecuted: boolean;
 
     requestId: string;
     objectUid: string;
     initiatorUid: string;
 
-    isExecuted: boolean;
-
     amount?: string;
     decimals?: number;
 
-    billUid?: string;
     userUid?: string;
     coinUid?: string;
-    companyUid?: string;
-    terminalUid?: string;
+    auctionUid?: string;
+    nicknameUid?: string;
 }
 
 export enum ActionType {
     USER_ADDED = 'USER_ADDED',
-    USER_CRYPTO_KEY_EDITED = 'USER_CRYPTO_KEY_EDITED',
+    USER_EDITED = 'USER_EDITED',
 
-    COMPANY_ADDED = 'COMPANY_ADDED',
-    COMPANY_USER_ADDED = 'COMPANY_USER_ADDED',
-    COMPANY_USER_EDITED = 'COMPANY_USER_EDITED',
-    COMPANY_USER_REMOVED = 'COMPANY_USER_REMOVED',
+    COMPANY_ADDED = 'AUCTION_ADDED',
+    COMPANY_BIDED = 'COMPANY_BIDED',
+    COMPANY_FINISHED = 'AUCTION_FINISHED',
 
     COIN_ADDED = 'COIN_ADDED',
     COIN_HOLDED = 'COIN_HOLDED',
@@ -39,22 +36,26 @@ export enum ActionType {
     COIN_EMITTED = 'COIN_EMITTED',
     COIN_UNHOLDED = 'COIN_UNHOLDED',
 
-    TERMINAL_ADDED = 'TERMINAL_ADDED',
-    TERMINAL_SUBSCRIPTION_ADDED = 'TERMINAL_SUBSCRIPTION_ADDED',
-    TERMINAL_SUBSCRIPTION_REMOVED = 'TERMINAL_SUBSCRIPTION_REMOVED',
+    AUCTION_ADDED = 'AUCTION_ADDED',
+    AUCTION_BIDED = 'AUCTION_BIDED',
+    AUCTION_FINISHED = 'AUCTION_FINISHED',
 
-    BILL_ADDED = 'BILL_ADDED',
-    BILL_EDITED = 'BILL_EDITED',
 
-    // Based on BILL_EDITED
-    BILL_APPROVED = 'BILL_APPROVED',
-    BILL_REJECTED = 'BILL_REJECTED',
+
+
+    NICKNAME_ADDED = 'NICKNAME_ADDED',
+    NICKNAME_ASSIGNED = 'NICKNAME_ASSIGNED',
+    NICKNAME_OWNER_CHANGED = 'NICKNAME_OWNER_CHANGED',
+
+    // Based on NICKNAME_TRANSFERRED
+    NICKNAME_TRANSFER_SENT = 'NICKNAME_TRANSFER_SENT',
+    NICKNAME_TRANSFER_RECEIVE = 'NICKNAME_TRANSFER_RECEIVE',
 
     // Based on COIN_TRANSFERRED
     COIN_TRANSFER_SENT = 'COIN_TRANSFER_SENT',
     COIN_TRANSFER_RECEIVE = 'COIN_TRANSFER_RECEIVE',
 
-    // Based on COIN_EMITTED
-    COIN_EMITTED_SENT = 'COIN_EMITTED_SENT',
-    COIN_EMITTED_RECEIVE = 'COIN_EMITTED_RECEIVE'
+    // Based on AUCTION_BIDED
+    AUCTION_BID_MADE = 'AUCTION_BID_MADE',
+    AUCTION_BID_BITTEN = 'AUCTION_BID_BITTEN',
 }

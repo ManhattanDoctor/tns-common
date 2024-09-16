@@ -1,7 +1,7 @@
 import { NicknameEvent, INicknameEventDto } from './NicknameEvent';
 import { Event } from './Event';
 
-export class NicknameTransferredEvent extends NicknameEvent {
+export class NicknameTransferredEvent extends NicknameEvent<INicknameTransferredEventDto> {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +16,12 @@ export class NicknameTransferredEvent extends NicknameEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: INicknameEventDto) {
+    constructor(data: INicknameTransferredEventDto) {
         super(NicknameTransferredEvent.NAME, data);
     }
+}
+
+export interface INicknameTransferredEventDto extends INicknameEventDto {
+    to: string;
+    from: string;
 }

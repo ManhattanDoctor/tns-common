@@ -1,10 +1,7 @@
-import { TransformUtil, TraceUtil, ILogger, TransportHttp, ITransportHttpSettings, TransportHttpCommandAsync, DateUtil, IKeyAsymmetric } from '@ts-core/common';
-import { IInitDto, IInitDtoResponse, ILoginDto, ILoginDtoResponse } from './login';
-import { User } from '../user';
-import { IUserGetDtoResponse, IUserEditDto, IUserEditDtoResponse } from '../api/user';
-import { ILedgerObjectDetailsGetDto, ILedgerObjectDetailsGetDtoResponse } from './ledger';
+import { TransformUtil, TraceUtil, ILogger, TransportHttp, ITransportHttpSettings, DateUtil } from '@ts-core/common';
 import { IActionListDto, IActionListDtoResponse, } from './action';
 import { Action } from '../Action';
+import { IHlfObjectDetailsGetDto, IHlfObjectDetailsGetDtoResponse } from './hlf';
 import * as _ from 'lodash';
 
 export class Client extends TransportHttp<ITransportHttpSettings> {
@@ -35,34 +32,8 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     //
     // --------------------------------------------------------------------------
 
-    public async login(data: ILoginDto): Promise<ILoginDtoResponse> {
-        return this.call<ILoginDtoResponse, ILoginDto>(LOGIN_URL, { data: TraceUtil.addIfNeed(data), method: 'post' });
-    }
-
-    public async init(data?: IInitDto): Promise<IInitDtoResponse> {
-        let item = await this.call<IInitDtoResponse, IInitDto>(INIT_URL, { data: TraceUtil.addIfNeed(data) });
-        item.user = TransformUtil.toClass(User, item.user);
-        return item;
-    }
-
     public async logout(traceId?: string): Promise<void> {
         // return this.call<void, ITraceable>(LOGOUT_URL, { data: TraceUtil.addIfNeed({ traceId }), method: 'post' });
-    }
-
-    // --------------------------------------------------------------------------
-    //
-    //  User Methods
-    //
-    // --------------------------------------------------------------------------
-
-    public async userGet(id: number): Promise<IUserGetDtoResponse> {
-        let item = await this.call<User>(`${USER_URL}/${id}`);
-        return TransformUtil.toClass(User, item);
-    }
-
-    public async userEdit(data: IUserEditDto): Promise<IUserEditDtoResponse> {
-        let item = await this.call<IUserEditDtoResponse, IUserEditDto>(`${USER_URL}/${data.id}`, { method: 'put', data });
-        return TransformUtil.toClass(User, item);
     }
 
     //--------------------------------------------------------------------------
@@ -79,24 +50,12 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
 
     //--------------------------------------------------------------------------
     //
-    // 	Ledger Methods
+    // 	Hlf Methods
     //
     //--------------------------------------------------------------------------
 
-    public async ledgerObjectDetailsGet(ledgerUid: string): Promise<ILedgerObjectDetailsGetDtoResponse> {
-        return this.call<ILedgerObjectDetailsGetDtoResponse, ILedgerObjectDetailsGetDto>(`${LEDGER_OBJECT_DETAILS_URL}`, { data: TraceUtil.addIfNeed({ ledgerUid }) });
-    }
-
-    //--------------------------------------------------------------------------
-    //
-    // 	Public Properties
-    //
-    //--------------------------------------------------------------------------
-
-    public set sid(value: string) {
-        if (!_.isNil(this.headers)) {
-            this.headers.Authorization = `Bearer ${value}`;
-        }
+    public async hlfObjectDetailsGet(uid: string): Promise<IHlfObjectDetailsGetDtoResponse> {
+        return this.call<IHlfObjectDetailsGetDtoResponse, IHlfObjectDetailsGetDto>(`${HLF_OBJECT_DETAILS_URL}`, { data: TraceUtil.addIfNeed({ uid }) });
     }
 }
 
@@ -112,4 +71,4 @@ export const LOGIN_URL = PREFIX + 'login';
 export const LOGOUT_URL = PREFIX + 'logout';
 
 export const ACTION_URL = PREFIX + 'action';
-export const LEDGER_OBJECT_DETAILS_URL = PREFIX + 'ledgerObjectDetails';
+export const HLF_OBJECT_DETAILS_URL = PREFIX + 'hlfObjectDetails';

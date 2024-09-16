@@ -3,6 +3,7 @@ import { IsOptional, Matches, IsArray } from 'class-validator';
 import { HlfTransportCommandAsync, UserUtil } from '@hlf-core/common';
 import { CommandName } from './Command';
 import { User } from '../User';
+import { RegExpUtil } from '../../../util';
 
 export class UserGetCommand extends HlfTransportCommandAsync<IUserGetDto, User> {
     // --------------------------------------------------------------------------
@@ -40,7 +41,7 @@ export interface IUserGetDto {
 }
 
 class UserGetDto implements IUserGetDto {
-    @Matches(UserUtil.UID_REG_EXP)
+    @Matches(RegExpUtil.USER_UID_REG_EXP)
     uid: string;
 
     @IsArray()

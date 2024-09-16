@@ -1,7 +1,7 @@
 import { Event } from './Event';
-import { CoinEvent, ICoinEventDto } from './CoinEvent';
+import { CoinEditedEvent, ICoinEditedEventDto } from './CoinEditedEvent';
 
-export class CoinHoldedEvent extends CoinEvent {
+export class CoinHoldedEvent extends CoinEditedEvent {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +16,7 @@ export class CoinHoldedEvent extends CoinEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: ICoinEventDto) {
+    constructor(data: ICoinEditedEventDto) {
         super(CoinHoldedEvent.NAME, data);
     }
 }

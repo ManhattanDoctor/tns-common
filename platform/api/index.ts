@@ -1,3 +1,5 @@
 export * from './Client';
-export * from './ErrorCode';
 export * from './IHlfObjectDetails';
+
+export const SOCKET_NAMESPACE = 'tns';
+

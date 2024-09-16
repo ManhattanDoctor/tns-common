@@ -6,9 +6,9 @@ export interface IHlfObjectDetails {
     type: HlfObjectType;
     name: string;
     picture: string;
-    description: string;
+    description?: string;
 }
 
-export function hlfObjectPicture(ledgerUid: string): string {
-    return `https://www.gravatar.com/avatar/${Sha512.hex(ledgerUid)}?s=200&d=identicon&r=g`;
+export function hlfObjectPicture(uid: string): string {
+    return `https://www.gravatar.com/avatar/${Sha512.hex(uid)}?s=200&d=identicon&r=g`;
 }

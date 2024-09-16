@@ -1,7 +1,8 @@
 import { TransformUtil } from '@ts-core/common';
-import { Coin, CoinUtil, HlfTransportCommandAsync } from '@hlf-core/common';
+import { Coin, HlfTransportCommandAsync } from '@hlf-core/common';
 import { IsOptional, Matches, IsArray } from 'class-validator';
 import { CommandName } from './Command';
+import { RegExpUtil } from '../../../util';
 import * as _ from 'lodash';
 
 export class CoinGetCommand extends HlfTransportCommandAsync<ICoinGetDto, Coin> {
@@ -40,7 +41,7 @@ export interface ICoinGetDto {
 }
 
 class CoinGetDto implements ICoinGetDto {
-    @Matches(CoinUtil.UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_UID_REG_EXP)
     uid: string;
 
     @IsArray()

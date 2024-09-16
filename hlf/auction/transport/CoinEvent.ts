@@ -4,8 +4,8 @@ export interface ICoinEventDto {
     coinUid: string;
 }
 
-export class CoinEvent extends TransportEvent<ICoinEventDto> {
-    constructor(name: string, data: ICoinEventDto) {
+export class CoinEvent<T extends ICoinEventDto = ICoinEventDto> extends TransportEvent<T> {
+    constructor(name: string, data: T) {
         super(name, data);
     }
 }

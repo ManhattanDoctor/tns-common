@@ -55,6 +55,7 @@ export class UserAddDto implements IUserAddDto {
     @IsEnum(UserRole, { each: true })
     roles?: Array<UserRole>;
 
+    @IsOptional()
     @Matches(RegExpUtil.ETH_ADDRESS_REG_EXP)
     wallet?: string;
 }

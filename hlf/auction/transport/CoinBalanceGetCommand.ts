@@ -1,8 +1,9 @@
 import { TransformUtil } from '@ts-core/common';
-import { CoinUtil, HlfTransportCommandAsync } from '@hlf-core/common';
+import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { Matches } from 'class-validator';
 import { CoinBalance } from '../CoinBalance';
 import { CommandName } from './Command';
+import { RegExpUtil } from '../../../util';
 import * as _ from 'lodash';
 
 export class CoinBalanceGetCommand extends HlfTransportCommandAsync<ICoinBalanceGetDto, CoinBalance> {
@@ -41,9 +42,9 @@ export interface ICoinBalanceGetDto {
 }
 
 class CoinBalanceGetDto implements ICoinBalanceGetDto {
-    @Matches(CoinUtil.UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_UID_REG_EXP)
     coinUid: string;
 
-    @Matches(CoinUtil.OWNER_UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_OBJECT_UID_REG_EXP)
     objectUid: string;
 }

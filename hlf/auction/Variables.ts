@@ -1,10 +1,10 @@
 import { CoinUtil } from "@hlf-core/common";
 import { DateUtil } from "@ts-core/common";
-import { Variables as UserVariables } from '../acl';
+import { Variables as AclVariables } from '../acl';
 
 export const Variables = {
     coin: {
-        uid: CoinUtil.createUid('TRUE', UserVariables.platform.uid),
+        uid: CoinUtil.createUid('TRUE', AclVariables.platform.uid),
         coinId: 'TRUE',
         amount: '1000000000',
         decimals: 0

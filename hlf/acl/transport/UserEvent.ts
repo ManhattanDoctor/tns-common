@@ -4,8 +4,8 @@ export interface IUserEventDto {
     userUid: string;
 }
 
-export class UserEvent extends TransportEvent<IUserEventDto> {
-    constructor(name: string, data: IUserEventDto) {
+export class UserEvent<T extends IUserEventDto= IUserEventDto> extends TransportEvent<T> {
+    constructor(name: string, data: T) {
         super(name, data);
     }
 }

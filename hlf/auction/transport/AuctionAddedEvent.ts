@@ -1,7 +1,8 @@
+import { TransformUtil, TransportEvent } from '@ts-core/common';
 import { Event } from './Event';
-import { AuctionEvent, IAuctionEventDto } from './AuctionEvent';
+import { Auction } from '../Auction';
 
-export class AuctionAddedEvent extends AuctionEvent {
+export class AuctionAddedEvent extends TransportEvent<Auction> {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +17,7 @@ export class AuctionAddedEvent extends AuctionEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: IAuctionEventDto) {
-        super(AuctionAddedEvent.NAME, data);
+    constructor(data: Auction) {
+        super(AuctionAddedEvent.NAME, TransformUtil.toClass(Auction, data));
     }
 }

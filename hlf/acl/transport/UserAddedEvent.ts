@@ -1,7 +1,8 @@
+import { TransformUtil, TransportEvent } from '@ts-core/common';
 import { Event } from './Event';
-import { IUserEventDto, UserEvent } from './UserEvent';
+import { User } from '../User';
 
-export class UserAddedEvent extends UserEvent {
+export class UserAddedEvent extends TransportEvent<User> {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +17,7 @@ export class UserAddedEvent extends UserEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: IUserEventDto) {
-        super(UserAddedEvent.NAME, data);
+    constructor(data: User) {
+        super(UserAddedEvent.NAME, TransformUtil.toClass(User, data));
     }
 }

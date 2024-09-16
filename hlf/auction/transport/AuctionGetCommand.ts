@@ -1,8 +1,9 @@
 import { TransformUtil } from '@ts-core/common';
-import { CoinUtil, HlfTransportCommandAsync } from '@hlf-core/common';
+import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { IsOptional, Matches, IsArray } from 'class-validator';
 import { CommandName } from './Command';
 import { Auction } from '../Auction';
+import { RegExpUtil } from '../../../util';
 import * as _ from 'lodash';
 
 export class AuctionGetCommand extends HlfTransportCommandAsync<IAuctionGetDto, Auction> {
@@ -41,7 +42,7 @@ export interface IAuctionGetDto {
 }
 
 class AuctionGetDto implements IAuctionGetDto {
-    @Matches(CoinUtil.UID_REG_EXP)
+    @Matches(RegExpUtil.AUCTION_UID_REG_EXP)
     uid: string;
 
     @IsArray()

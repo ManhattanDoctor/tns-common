@@ -1,5 +1,5 @@
 import { MathUtil } from '@ts-core/common';
-import { Min, IsInt, IsNumberString } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 import * as _ from 'lodash';
 
 export class CoinBalance {
@@ -17,10 +17,6 @@ export class CoinBalance {
 
     @IsNumberString()
     public total: string;
-
-    @IsInt()
-    @Min(0)
-    public decimals: number;
 
     // --------------------------------------------------------------------------
     //

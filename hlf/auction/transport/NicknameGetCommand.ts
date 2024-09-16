@@ -42,7 +42,7 @@ export interface INicknameGetDto {
 }
 
 class NicknameGetDto implements INicknameGetDto {
-    @Matches(RegExpUtil.NICKNAME_REG_EXP)
+    @Matches(RegExpUtil.NICKNAME_UID_REG_EXP)
     uid: string;
 
     @IsArray()

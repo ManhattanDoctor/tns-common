@@ -1,6 +1,6 @@
 import { IsEnum, IsOptional, Matches } from 'class-validator';
 import { IUser } from '@hlf-core/common';
-import { RegExpUtil, EthereumUtil } from '../../util';
+import { RegExpUtil } from '../../util';
 import * as _ from 'lodash';
 
 export enum UserStatus {
@@ -36,7 +36,7 @@ export class User implements IUser<UserStatus, UserRole> {
     }
 
     public static createUid(address: string): string {
-        return `${User.PREFIX}/${EthereumUtil.parseAddress(address)}`;
+        return `${User.PREFIX}/${address}`;
     }
 
     // --------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 import { TransformUtil } from '@ts-core/common';
 import { Matches, IsNumberString } from 'class-validator';
-import { CoinUtil, HlfTransportCommandAsync } from '@hlf-core/common';
+import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { CommandName } from './Command';
+import { RegExpUtil } from '../../../util';
 
 export class CoinTransferCommand extends HlfTransportCommandAsync<ICoinTransferDto, void> {
     // --------------------------------------------------------------------------
@@ -30,12 +31,12 @@ export interface ICoinTransferDto {
 }
 
 class CoinTransferDto implements ICoinTransferDto {
-    @Matches(CoinUtil.OWNER_UID_REG_EXP)
+    @Matches(RegExpUtil.COIN_OWNER_UID_REG_EXP)
     to: string;
 
     @IsNumberString()
     amount: string;
 
-    @Matches(CoinUtil.COIN_ID_REG_EXP)
+    @Matches(RegExpUtil.COIN_UID_REG_EXP)
     coinUid: string;
 }

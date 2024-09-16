@@ -18,6 +18,7 @@ export class Auction implements IUIDable {
     // --------------------------------------------------------------------------
 
     public static PREFIX = 'auction';
+    public static MAX_CREATED_DATE = new Date(2500, 0);
 
     // --------------------------------------------------------------------------
     //
@@ -25,17 +26,18 @@ export class Auction implements IUIDable {
     //
     // --------------------------------------------------------------------------
 
-    public static create(nickname: string, type: AuctionType, expired: Date, parentUid: string): Auction {
+    public static create(created: Date, nickname: string, type: AuctionType, expired: Date, parentUid: string): Auction {
         let item = new Auction();
-        item.uid = Auction.createUid(nickname);
+        item.uid = Auction.createUid(created, nickname);
         item.type = type;
         item.expired = expired;
         item.parentUid = parentUid;
         return item;
     }
 
-    public static createUid(nickname: string): string {
-        return `${Auction.PREFIX}/${nickname}`;
+    public static createUid(created: Date, nickname: string): string {
+        let time = Auction.MAX_CREATED_DATE.getTime() - created.getTime();
+        return `${Auction.PREFIX}/${nickname}/${_.padStart(time.toString(), 14, '0')}`;
     }
 
     // --------------------------------------------------------------------------
@@ -78,10 +80,14 @@ export class Auction implements IUIDable {
 
     @Matches(RegExpUtil.NICKNAME_REG_EXP)
     public get nickname(): string {
-        return _.last(this.uid.split('/'));
+        return this.uid.split('/')[1];
     }
 
     public get isSucceed(): boolean {
         return this.type === AuctionType.SECONDARY ? !_.isNil(this.bidderUid) && this.bidderUid !== this.initiatorUid : true;
+    }
+
+    public get winnerUid(): string {
+        return !_.isNil(this.bidderUid) ? this.bidderUid : this.initiatorUid;
     }
 }

@@ -1,7 +1,9 @@
-import { Event } from './Event';
+import { CoinAmount, ICoinAmount } from '@hlf-core/common';
+import { Type } from 'class-transformer';
 import { AuctionEvent, IAuctionEventDto } from './AuctionEvent';
+import { Event } from './Event';
 
-export class AuctionBidedEvent extends AuctionEvent {
+export class AuctionBidedEvent extends AuctionEvent<IAuctionBidedData> {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -16,7 +18,22 @@ export class AuctionBidedEvent extends AuctionEvent {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: IAuctionEventDto) {
+    constructor(data: IAuctionBidedData) {
         super(AuctionBidedEvent.NAME, data);
     }
+}
+
+export interface IAuctionBidedData extends IAuctionEventDto {
+    price: ICoinAmount;
+    expired: Date;
+    bidderUid: string;
+}
+
+export class AuctionBidedData implements IAuctionBidedData {
+    @Type(() => CoinAmount)
+    price: CoinAmount;
+    @Type(() => Date)
+    expired: Date;
+    bidderUid: string;
+    auctionUid: string;
 }

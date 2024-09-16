@@ -1,8 +1,7 @@
-import { TransportEvent } from '@ts-core/common';
-import { ICoinEmitDto } from './CoinEmitCommand';
 import { Event } from './Event';
+import { CoinEditedEvent, ICoinEditedEventDto } from './CoinEditedEvent';
 
-export class CoinEmittedEvent extends TransportEvent<ICoinEmitDto> {
+export class CoinEmittedEvent extends CoinEditedEvent {
     // --------------------------------------------------------------------------
     //
     //  Public Static Properties
@@ -17,7 +16,7 @@ export class CoinEmittedEvent extends TransportEvent<ICoinEmitDto> {
     //
     // --------------------------------------------------------------------------
 
-    constructor(data: ICoinEmitDto) {
+    constructor(data: ICoinEditedEventDto) {
         super(CoinEmittedEvent.NAME, data);
     }
 }
