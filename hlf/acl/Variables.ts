@@ -18,5 +18,8 @@ export const Variables = {
     },
     transaction: {
         hash: _.padStart('0', 64, '0')
+    },
+    signature: {
+        message: 'TNS'
     }
 }
