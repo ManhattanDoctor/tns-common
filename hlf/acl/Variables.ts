@@ -20,6 +20,6 @@ export const Variables = {
         hash: _.padStart('0', 64, '0')
     },
     signature: {
-        message: 'TNS'
+        message: (nonce: string) => `TNS_${nonce}`
     }
 }
