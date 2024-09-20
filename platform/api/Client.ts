@@ -33,7 +33,7 @@ export class Client extends TransportHttp<ITransportHttpSettings> {
     // --------------------------------------------------------------------------
 
     public async init(): Promise<IInitDtoResponse> {
-        return this.call<IInitDtoResponse, void>(INIT_URL, { method: 'post' });
+        return this.call<IInitDtoResponse, void>(INIT_URL);
     }
 
     //--------------------------------------------------------------------------

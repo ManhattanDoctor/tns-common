@@ -60,5 +60,5 @@ export class Nickname implements IUIDable {
 }
 
 export function getNicknameByUid(item: UID): string {
-    return _.last(getUid(item).split('/'));
+    return !_.isNil(item) ? _.last(getUid(item).split('/')) : null;
 }

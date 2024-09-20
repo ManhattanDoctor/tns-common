@@ -2,6 +2,7 @@ import { Coin as HlfCoin } from '@hlf-core/common';
 
 export class Coin extends HlfCoin {
     id: number;
+    created: Date;
 }
 
 export function getCoinRoom(id: number): string {
