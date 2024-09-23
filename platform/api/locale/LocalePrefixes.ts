@@ -8,5 +8,7 @@ export const EXPLORER_LOCALE_PREFIXES = [
     'Custom.json',
 
     'Coin.json',
-    'User.json'
+    'User.json',
+    'Auction.json',
+    'Nickname.json',
 ];
