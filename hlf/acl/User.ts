@@ -1,6 +1,8 @@
-import { IsEnum, IsOptional, Matches } from 'class-validator';
+import { IsEnum, IsOptional, Matches, IsDate } from 'class-validator';
+import { Type } from 'class-transformer';
 import { IUser } from '@hlf-core/common';
 import { RegExpUtil } from '../../util';
+import { getUid, UID } from '@ts-core/common';
 import * as _ from 'lodash';
 
 export enum UserStatus {
@@ -20,6 +22,10 @@ export class User implements IUser<UserStatus, UserRole> {
     // --------------------------------------------------------------------------
 
     public static PREFIX = 'user';
+
+    public static getAddressByUid(item: UID): string {
+        return !_.isNil(item) ? _.last(getUid(item).split('/')) : null;
+    }
 
     // --------------------------------------------------------------------------
     //
@@ -66,18 +72,7 @@ export class User implements IUser<UserStatus, UserRole> {
     @Matches(RegExpUtil.NICKNAME_UID_REG_EXP)
     public nicknameUid?: string;
 
-    // --------------------------------------------------------------------------
-    //
-    //  Public Properties
-    //
-    // --------------------------------------------------------------------------
-
-    @Matches(RegExpUtil.ETH_ADDRESS_REG_EXP)
-    public get address(): string {
-        return _.last(this.uid.split('/'));
-    }
-
-    public get created(): Date {
-        return null;
-    }
+    @Type(() => Date)
+    @IsDate()
+    public created: Date;
 }

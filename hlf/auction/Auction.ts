@@ -1,6 +1,6 @@
 import { IsDate, ValidateIf, Matches, ValidateNested, IsDefined, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
-import { IUIDable } from '@ts-core/common';
+import { getUid, IUIDable, UID } from '@ts-core/common';
 import { CoinAmount } from '@hlf-core/common';
 import { RegExpUtil } from '../../util';
 import * as _ from 'lodash';
@@ -40,6 +40,18 @@ export class Auction implements IUIDable {
         return `${Auction.PREFIX}/${nickname}/${_.padStart(time.toString(), 14, '0')}`;
     }
 
+    public static getNicknameByUid(item: UID): string {
+        return !_.isNil(item) ? getUid(item).split('/')[1] : null;
+    }
+
+    public static getIsSucceed(item: Auction): boolean {
+        return item.type === AuctionType.SECONDARY ? !_.isNil(item.bidderUid) && item.bidderUid !== item.initiatorUid : true;
+    }
+
+    public static getWinnerUid(item: Auction): string {
+        return !_.isNil(item.bidderUid) ? item.bidderUid : item.initiatorUid;
+    }
+
     // --------------------------------------------------------------------------
     //
     //  Properties
@@ -72,22 +84,4 @@ export class Auction implements IUIDable {
     @Matches(RegExpUtil.USER_UID_REG_EXP)
     public initiatorUid?: string;
 
-    // --------------------------------------------------------------------------
-    //
-    //  Public Properties
-    //
-    // --------------------------------------------------------------------------
-
-    @Matches(RegExpUtil.NICKNAME_REG_EXP)
-    public get nickname(): string {
-        return this.uid.split('/')[1];
-    }
-
-    public get isSucceed(): boolean {
-        return this.type === AuctionType.SECONDARY ? !_.isNil(this.bidderUid) && this.bidderUid !== this.initiatorUid : true;
-    }
-
-    public get winnerUid(): string {
-        return !_.isNil(this.bidderUid) ? this.bidderUid : this.initiatorUid;
-    }
 }

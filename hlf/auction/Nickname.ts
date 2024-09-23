@@ -31,6 +31,10 @@ export class Nickname implements IUIDable {
         return `${Nickname.PREFIX}/${nickname}`;
     }
 
+    public static getNicknameByUid(item: UID): string {
+        return !_.isNil(item) ? _.last(getUid(item).split('/')) : null;
+    }
+
     // --------------------------------------------------------------------------
     //
     //  Properties
@@ -46,19 +50,4 @@ export class Nickname implements IUIDable {
     @ValidateIf(item => item.uid !== Variables.platform.nicknameUid)
     @Matches(RegExpUtil.NICKNAME_UID_REG_EXP)
     public parentUid: string;
-
-    // --------------------------------------------------------------------------
-    //
-    //  Public Properties
-    //
-    // --------------------------------------------------------------------------
-
-    @Matches(RegExpUtil.NICKNAME_REG_EXP)
-    public get nickname(): string {
-        return getNicknameByUid(this.uid);
-    }
-}
-
-export function getNicknameByUid(item: UID): string {
-    return !_.isNil(item) ? _.last(getUid(item).split('/')) : null;
 }
