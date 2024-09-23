@@ -1,4 +1,4 @@
-import { IsDate, ValidateIf, Matches, ValidateNested, IsDefined, IsEnum } from 'class-validator';
+import { IsDate, IsOptional, ValidateIf, Matches, ValidateNested, IsDefined, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Auction as HlfAuction } from '../hlf/auction';
 
@@ -10,9 +10,14 @@ export enum AuctionStatus {
 export class Auction extends HlfAuction {
     id: number;
 
+    @Type(() => Date)
+    @IsDate()
+    created: Date;
+
     @IsEnum(AuctionStatus)
     status: AuctionStatus;
 
+    @IsOptional()
     @Type(() => Date)
     @IsDate()
     finished?: Date;
