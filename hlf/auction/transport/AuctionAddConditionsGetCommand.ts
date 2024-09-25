@@ -31,8 +31,9 @@ export class AuctionAddConditionsGetCommand extends HlfTransportCommandAsync<IAu
     //
     // --------------------------------------------------------------------------
 
-    protected checkResponse(item: IAuctionAddConditionsGetDtoResponse): AuctionAddConditionsGetDtoResponse {
-        return TransformUtil.toClass(AuctionAddConditionsGetDtoResponse, item);
+    protected checkResponse(item: IAuctionAddConditionsGetDtoResponse): IAuctionAddConditionsGetDtoResponse {
+        return item;
+        //return TransformUtil.toClass(AuctionAddConditionsGetDtoResponse, item);
     }
 }
 
@@ -52,7 +53,7 @@ export class AuctionAddConditionsGetDto implements IAuctionAddConditionsGetDto {
     @IsOptional()
     @IsDefined()
     @Type(() => CoinAmount)
-    price: CoinAmount;
+    price?: CoinAmount;
 
     @IsOptional()
     @Matches(RegExpUtil.NICKNAME_REG_EXP)
