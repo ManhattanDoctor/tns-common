@@ -8,3 +8,7 @@ export class User extends HlfUser {
     @Matches(RegExpUtil.NICKNAME_REG_EXP)
     address: string;
 }
+
+export function getUserRoom(id: number): string {
+    return `user${id}`;
+}

@@ -10,7 +10,7 @@ export interface IHlfObjectDetails {
     description?: string;
 }
 
-export function hlfObjectPicture(uid: string, options?: IHlfObjectPictureOptions): string {
+export function hlfObjectPicture(uid: string, options: IHlfObjectPictureOptions): string {
     let { display, rating, size } = options;
     if (_.isNil(display)) {
         display = 'identicon';

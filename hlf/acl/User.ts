@@ -33,10 +33,11 @@ export class User implements IUser<UserStatus, UserRole> {
     //
     // --------------------------------------------------------------------------
 
-    public static create(address: string, inviterUid: string): User {
+    public static create(address: string, inviterUid: string, created: Date): User {
         let item = new User();
         item.uid = User.createUid(address);
         item.status = UserStatus.ACTIVE;
+        item.created = created;
         item.inviterUid = inviterUid;
         return item;
     }

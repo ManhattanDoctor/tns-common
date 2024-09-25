@@ -39,3 +39,5 @@ export * from './AuctionEvent';
 export * from './AuctionAddedEvent';
 export * from './AuctionBidedEvent';
 export * from './AuctionFinishedEvent';
+
+export * from './NonSignedCommands';

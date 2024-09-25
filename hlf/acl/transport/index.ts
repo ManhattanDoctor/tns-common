@@ -10,3 +10,5 @@ export * from './UserEditCommand';
 export * from './UserEvent';
 export * from './UserAddedEvent';
 export * from './UserEditedEvent';
+
+export * from './NonSignedCommands';

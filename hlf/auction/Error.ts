@@ -55,6 +55,11 @@ export class AuctionAlreadyExistsError extends Error<void> {
         super(ErrorCode.AUCTION_ALREADY_EXISTS, `Auction "${getUid(item)}" already exists`);
     }
 }
+export class AuctionNicknameOrPriceUndefinedError extends Error<void> {
+    constructor() {
+        super(ErrorCode.AUCTION_NICKNAME_OR_PRICE_UNDEFINED, 'Either "nickname" must be defined or the "price"');
+    }
+}
 export class AuctionNotFinishedYetError extends Error<void> {
     constructor(item: UID) {
         super(ErrorCode.AUCTION_NOT_FINISHED_YET, `Auction "${getUid(item)}" not finished yet`);
@@ -89,6 +94,7 @@ export enum ErrorCode {
     AUCTION_ALREADY_BIDED = 'AUCTION_ALREADY_BIDED',
     AUCTION_ALREADY_EXISTS = 'AUCTION_ALREADY_EXISTS',
     AUCTION_NOT_FINISHED_YET = 'AUCTION_NOT_FINISHED_YET',
+    AUCTION_NICKNAME_OR_PRICE_UNDEFINED = 'AUCTION_NICKNAME_OR_PRICE_UNDEFINED',
     //
     USER_NICKNAME_NOT_FOUND = 'USER_NICKNAME_NOT_FOUND',
     USER_ALREADY_HAS_NICKNAME = 'USER_ALREADY_HAS_NICKNAME',
