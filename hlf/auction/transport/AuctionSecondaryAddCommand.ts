@@ -1,7 +1,6 @@
 import { TransformUtil } from '@ts-core/common';
-import { ValidateNested, IsDefined } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CoinAmount, HlfTransportCommandAsync, ICoinAmount } from '@hlf-core/common';
+import { IsString } from 'class-validator';
+import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { CommandName } from './Command';
 import { Auction } from '../Auction';
 
@@ -26,12 +25,10 @@ export class AuctionSecondaryAddCommand extends HlfTransportCommandAsync<IAuctio
 }
 
 export interface IAuctionSecondaryAddDto {
-    price: ICoinAmount;
+    price: string;
 }
 
 export class AuctionSecondaryAddDto {
-    @Type(() => CoinAmount)
-    @IsDefined()
-    @ValidateNested()
-    public price: CoinAmount;
+    @IsString()
+    public price: string;
 }

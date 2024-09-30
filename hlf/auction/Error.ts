@@ -47,7 +47,7 @@ export class NicknameAlreadyExistsError extends Error<void> {
 }
 export class AuctionNotFoundError extends Error<void> {
     constructor(item: UID) {
-        super(ErrorCode.AUCTION_NOT_FOUND, `Auction to find "${getUid(item)}" nickname`);
+        super(ErrorCode.AUCTION_NOT_FOUND, `Unable to find "${getUid(item)}" auction`);
     }
 }
 export class AuctionAlreadyExistsError extends Error<void> {

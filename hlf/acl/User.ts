@@ -22,6 +22,13 @@ export class User implements IUser<UserStatus, UserRole> {
     // --------------------------------------------------------------------------
 
     public static PREFIX = 'user';
+    public static MAX_CREATED_DATE = new Date(2500, 0);
+
+    // --------------------------------------------------------------------------
+    //
+    //  Static Methods
+    //
+    // --------------------------------------------------------------------------
 
     public static getAddressByUid(item: UID): string {
         return !_.isNil(item) ? _.last(getUid(item).split('/')) : null;

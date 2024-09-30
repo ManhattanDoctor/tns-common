@@ -27,7 +27,6 @@ export class AuctionCheckCommand extends HlfTransportCommand<IAuctionCheckDto> {
 export interface IAuctionCheckDto {
     uid: string;
 }
-
 export class AuctionCheckDto implements IAuctionCheckDto {
     @Matches(RegExpUtil.AUCTION_UID_REG_EXP)
     uid: string;

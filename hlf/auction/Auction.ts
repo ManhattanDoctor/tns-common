@@ -1,7 +1,7 @@
 import { IsDate, ValidateIf, Matches, ValidateNested, IsDefined, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
 import { getUid, IUIDable, UID } from '@ts-core/common';
-import { CoinAmount } from '@hlf-core/common';
+import { ICoinAmount, CoinAmount } from '@hlf-core/common';
 import { RegExpUtil } from '../../util';
 import * as _ from 'lodash';
 
@@ -67,7 +67,7 @@ export class Auction implements IUIDable {
     @Type(() => CoinAmount)
     @IsDefined()
     @ValidateNested()
-    public price: CoinAmount;
+    public price: ICoinAmount;
 
     @Type(() => Date)
     @IsDate()

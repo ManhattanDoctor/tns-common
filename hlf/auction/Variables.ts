@@ -7,7 +7,9 @@ export const Variables = {
         uid: CoinUtil.createUid('TRUE', AclVariables.platform.uid),
         coinId: 'TRUE',
         amount: '1000000000',
-        decimals: 0
+        decimals: 0,
+        ownerUid: AclVariables.platform.uid,
+        balance: null
     },
     auction: {
         primary: {

@@ -1,5 +1,5 @@
 import { TransformUtil } from '@ts-core/common';
-import { IsEnum, ValidateNested, ValidateIf, Matches, IsDefined, IsOptional } from 'class-validator';
+import { IsEnum, ValidateNested, IsString, Matches, IsDefined, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CoinAmount, HlfTransportCommandAsync, ICoinAmount } from '@hlf-core/common';
 import { CommandName } from './Command';
@@ -37,7 +37,7 @@ export class AuctionAddConditionsGetCommand extends HlfTransportCommandAsync<IAu
 }
 
 export interface IAuctionAddConditionsGetDto {
-    price?: ICoinAmount;
+    price?: string;
     nickname?: string;
 }
 
@@ -50,9 +50,8 @@ export interface IAuctionAddConditionsGetDtoResponse {
 
 export class AuctionAddConditionsGetDto implements IAuctionAddConditionsGetDto {
     @IsOptional()
-    @IsDefined()
-    @Type(() => CoinAmount)
-    price: CoinAmount;
+    @IsString()
+    price?: string;
 
     @IsOptional()
     @Matches(RegExpUtil.NICKNAME_REG_EXP)
