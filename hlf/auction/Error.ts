@@ -75,7 +75,7 @@ export class UserNicknameNotFoundError extends Error<void> {
         super(ErrorCode.USER_NICKNAME_NOT_FOUND, `Unable to find "${getUid(item)}" user nickname`);
     }
 }
-export class UserAlreadyHasNicknameExistsError extends Error<void> {
+export class UserAlreadyHasNicknameError extends Error<void> {
     constructor(item: UID) {
         super(ErrorCode.USER_ALREADY_HAS_NICKNAME, `User "${getUid(item)}" already has nickname`);
     }
