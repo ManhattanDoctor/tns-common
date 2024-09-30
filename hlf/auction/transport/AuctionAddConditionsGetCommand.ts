@@ -32,12 +32,13 @@ export class AuctionAddConditionsGetCommand extends HlfTransportCommandAsync<IAu
     // --------------------------------------------------------------------------
 
     protected checkResponse(item: IAuctionAddConditionsGetDtoResponse): IAuctionAddConditionsGetDtoResponse {
-        return item;
-        //return TransformUtil.toClass(AuctionAddConditionsGetDtoResponse, item);
+        return TransformUtil.toClass(AuctionAddConditionsGetDtoResponse, item);
     }
 }
 
 export interface IAuctionAddConditionsGetDto {
+    userUid: string;
+    
     price?: string;
     nickname?: string;
 }
@@ -50,6 +51,9 @@ export interface IAuctionAddConditionsGetDtoResponse {
 }
 
 export class AuctionAddConditionsGetDto implements IAuctionAddConditionsGetDto {
+    @Matches(RegExpUtil.USER_UID_REG_EXP)
+    userUid: string;
+
     @IsOptional()
     @IsString()
     price?: string;
@@ -71,6 +75,6 @@ export class AuctionAddConditionsGetDtoResponse implements IAuctionAddConditions
     @Type(() => Date)
     expired: Date;
 
-    @Matches(RegExpUtil.NICKNAME_REG_EXP)
+    @Matches(RegExpUtil.NICKNAME_UID_REG_EXP)
     parentUid: string;
 }

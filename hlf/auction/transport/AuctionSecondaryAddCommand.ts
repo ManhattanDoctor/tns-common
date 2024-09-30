@@ -22,6 +22,16 @@ export class AuctionSecondaryAddCommand extends HlfTransportCommandAsync<IAuctio
     constructor(request: IAuctionSecondaryAddDto) {
         super(AuctionSecondaryAddCommand.NAME, TransformUtil.toClass(AuctionSecondaryAddDto, request));
     }
+
+    // --------------------------------------------------------------------------
+    //
+    //  Protected Methods
+    //
+    // --------------------------------------------------------------------------
+
+    protected checkResponse(item: Auction): Auction {
+        return TransformUtil.toClass(Auction, item);
+    }
 }
 
 export interface IAuctionSecondaryAddDto {

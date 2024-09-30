@@ -36,9 +36,13 @@ export class AuctionBidConditionsGetCommand extends HlfTransportCommandAsync<IAu
 
 export interface IAuctionBidConditionsGetDto {
     uid: string;
+    userUid: string;
 }
 
 export class AuctionBidConditionsGetDto implements IAuctionBidConditionsGetDto {
+    @Matches(RegExpUtil.USER_UID_REG_EXP)
+    userUid: string;
+
     @Matches(RegExpUtil.AUCTION_UID_REG_EXP)
     uid: string;
 }

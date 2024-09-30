@@ -24,7 +24,18 @@ export class AuctionPrimaryAddCommand extends HlfTransportCommandAsync<IAuctionP
     constructor(request: IAuctionPrimaryAddDto) {
         super(AuctionPrimaryAddCommand.NAME, TransformUtil.toClass(AuctionPrimaryAddDto, request));
     }
+
+    // --------------------------------------------------------------------------
+    //
+    //  Protected Methods
+    //
+    // --------------------------------------------------------------------------
+
+    protected checkResponse(item: Auction): Auction {
+        return TransformUtil.toClass(Auction, item);
+    }
 }
+
 
 export interface IAuctionPrimaryAddDto extends IAuctionAddConditionsGetDto {
     nickname: string;
