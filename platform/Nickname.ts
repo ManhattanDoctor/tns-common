@@ -13,3 +13,7 @@ export class Nickname extends HlfNickname {
     @Matches(RegExpUtil.NICKNAME_REG_EXP)
     nickname: string;
 }
+
+export function getNicknameRoom(id: number): string {
+    return `nickname${id}`;
+}
