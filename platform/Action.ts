@@ -11,11 +11,11 @@ export class Action {
 
     requestId: string;
     objectUid: string;
-    initiatorUid: string;
 
     amount?: string;
     decimals?: number;
-
+    initiatorUid?: string;
+    
     userUid?: string;
     coinUid?: string;
     auctionUid?: string;
