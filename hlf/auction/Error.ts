@@ -50,9 +50,9 @@ export class AuctionNotFoundError extends Error<void> {
         super(ErrorCode.AUCTION_NOT_FOUND, `Unable to find "${getUid(item)}" auction`);
     }
 }
-export class AuctionAlreadyExistsError extends Error<void> {
-    constructor(item: UID) {
-        super(ErrorCode.AUCTION_ALREADY_EXISTS, `Auction "${getUid(item)}" already exists`);
+export class AuctionNameAlreadyExistsError extends Error<void> {
+    constructor(nickname: string) {
+        super(ErrorCode.AUCTION_NAME_ALREADY_EXISTS, `Auction nickname "${nickname}" already exists`);
     }
 }
 export class AuctionNicknameOrPriceUndefinedError extends Error<void> {
@@ -92,7 +92,7 @@ export enum ErrorCode {
     //
     AUCTION_NOT_FOUND = 'AUCTION_NOT_FOUND',
     AUCTION_ALREADY_BIDED = 'AUCTION_ALREADY_BIDED',
-    AUCTION_ALREADY_EXISTS = 'AUCTION_ALREADY_EXISTS',
+    AUCTION_NAME_ALREADY_EXISTS = 'AUCTION_NAME_ALREADY_EXISTS',
     AUCTION_NOT_FINISHED_YET = 'AUCTION_NOT_FINISHED_YET',
     AUCTION_NICKNAME_OR_PRICE_UNDEFINED = 'AUCTION_NICKNAME_OR_PRICE_UNDEFINED',
     //
