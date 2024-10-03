@@ -12,6 +12,7 @@ export enum UserStatus {
 
 export enum UserRole {
     USER_MANAGER = 'USER_MANAGER',
+    COIN_MANAGER = 'COIN_MANAGER',
 }
 
 export class User implements IUser<UserStatus, UserRole> {

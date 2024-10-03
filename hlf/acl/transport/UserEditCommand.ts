@@ -2,7 +2,7 @@ import { TransformUtil } from '@ts-core/common';
 import { IsEnum, Matches, IsOptional, IsDefined } from 'class-validator';
 import { HlfTransportCommandAsync } from '@hlf-core/common';
 import { CommandName } from './Command';
-import { User, UserRole } from '../User';
+import { User, UserRole, UserStatus } from '../User';
 import { RegExpUtil } from '../../../util';
 
 export class UserEditCommand extends HlfTransportCommandAsync<IUserEditDto, User> {
@@ -38,6 +38,7 @@ export class UserEditCommand extends HlfTransportCommandAsync<IUserEditDto, User
 export interface IUserEditDto {
     uid: string;
     roles?: Array<UserRole>;
+    status?: UserStatus;
     wallet?: string;
 }
 
