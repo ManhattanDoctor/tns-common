@@ -50,6 +50,11 @@ export class UserEditDto implements IUserEditDto {
     @IsEnum(UserRole, { each: true })
     roles?: Array<UserRole>;
 
+    @IsOptional()
+    @IsEnum(UserStatus)
+    status?: UserStatus;
+
+    @IsOptional()
     @Matches(RegExpUtil.ETH_ADDRESS_REG_EXP)
     wallet?: string;
 }
