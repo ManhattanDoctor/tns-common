@@ -4,9 +4,9 @@ import { Variables as AclVariables } from '../acl';
 
 export const Variables = {
     coin: {
-        uid: CoinUtil.createUid('TRUE', AclVariables.platform.uid),
+        uid: CoinUtil.createUid('TRUE', 0, AclVariables.platform.uid),
+        amount: Number(100_000).toString(),
         coinId: 'TRUE',
-        amount: '1000000000',
         decimals: 0,
         ownerUid: AclVariables.platform.uid,
         balance: null

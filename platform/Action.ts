@@ -13,7 +13,6 @@ export class Action {
     objectUid: string;
 
     amount?: string;
-    decimals?: number;
     initiatorUid?: string;
     
     userUid?: string;
