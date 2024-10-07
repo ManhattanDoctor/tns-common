@@ -4,5 +4,4 @@ export class CoinBalance extends HlfCoinBalance {
     id: number;
     uid: string;
     coinUid: string;
-    decimals: number;
 }
